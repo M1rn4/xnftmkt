@@ -1,9 +1,11 @@
 import type { AppProps } from "next/app";
 import { ThirdwebProvider ,metamaskWallet, magicLink,} from "@thirdweb-dev/react";
-import { Navbar } from "../components/Navbar/Navbar";
+import { NavBar } from "../components/Navbar/Navbar";
 import NextNProgress from "nextjs-progressbar";
 import { NETWORK } from "../const/contractAddresses";
 import "../styles/globals.css";
+import { ChakraProvider } from "@chakra-ui/react";
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -28,11 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       }),
     ]}
   >
-    {/* <ThirdwebProvider
-      clientId={process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID}
-      activeChain={NETWORK}
-    > */}
-      {/* Progress bar when navigating between pages */}
+      
       <NextNProgress
         color="var(--color-tertiary)"
         startPosition={0.3}
@@ -40,11 +38,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         height={3}
         showOnShallow={true}
       />
-
-      {/* Render the navigation menu above each component */}
-      <Navbar />
-      {/* Render the actual component (page) */}
+      <ChakraProvider>
+        {/* Render the navigation menu above each component */}
+        <NavBar />
+        {/* Render the actual component (page) */}
+        </ChakraProvider>
       <Component {...pageProps} />
+      
     </ThirdwebProvider>
   );
 }
