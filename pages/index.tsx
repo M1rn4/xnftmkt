@@ -6,7 +6,7 @@ import { ChakraBaseProvider, ChakraProvider } from "@chakra-ui/react";
 import { Intro } from "../components/Landing/Intro";
 import { Statics } from "../components/Landing/Statics";
 import { Hero } from "../components/Landing/Hero";
-import { Help } from "../components/Landing/Help";
+import { Ask } from "../components/Landing/Ask";
 /**
  * Landing page with a simple gradient background and a hero asset.
  * Free to customize as you see fit.
@@ -17,8 +17,7 @@ const Home: NextPage = () => {
       <Intro />
       <Statics/>
       <Hero/>
-      <Help/> 
-
+      <Ask/>
     </ChakraProvider>
   );
 };

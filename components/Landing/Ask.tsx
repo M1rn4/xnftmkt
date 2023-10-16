@@ -14,7 +14,7 @@ import {
 
 import { ChevronDownIcon } from '@chakra-ui/icons'
 
-export  function Help() {
+export  function Ask() {
   return (
     <Flex
       minH={'100vh'}

@@ -1,14 +1,11 @@
-"use client"
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
-
 import {
   Box,
   Flex,
   Text,
   IconButton,
-  Button,
+  Button,  // Agregado el componente Button
   Stack,
   Collapse,
   Icon,
@@ -16,29 +13,18 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-} from '@chakra-ui/icons'
-
+} from '@chakra-ui/icons';
 import {
-  ThirdwebProvider,
   ConnectWallet,
-  metamaskWallet,
-  smartWallet,
-  localWallet,
-  paperWallet,
-  magicLink,
-  coinbaseWallet,
-  walletConnect,
-  useAddress
+  useAddress,
 } from "@thirdweb-dev/react";
-
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
@@ -47,73 +33,83 @@ import styles from "./Navbar.module.css";
 export function NavBar() {
   const { isOpen, onToggle } = useDisclosure();
   const address = useAddress();
+
   return (
-    <Box>
+    <Box position="fixed" top="0" left="0" right="0" zIndex="999">
       <Flex
         bg={useColorModeValue('black', 'black')}
-        color={useColorModeValue('black', 'black')}
+        color={useColorModeValue('white', 'white')}
         minH={'15px'}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle={'solid'}
-        align={'center'}>
+        align={'center'}
+      >
         <Flex
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
-          display={{ base: 'flex', md: 'none' }}>
+          display={{ base: 'flex', md: 'none' }}
+        >
           <IconButton
             onClick={onToggle}
-            icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
-            variant={'ghost'}
+            icon={isOpen ? <CloseIcon w={8} h={8} /> : <HamburgerIcon w={8} h={8} />}
+            variant={'link'}
             aria-label={'Toggle Navigation'}
           />
         </Flex>
         <Flex>
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={'space-between'}
-          direction={'row'}
-          spacing={6}>
+          <Stack
+            flex={{ base:2, md: 1 }}
+            justify={'space-between'}
+            direction={'row'}
+            spacing={6}
+          >
             <ConnectWallet
-                theme={"dark"}
-                btnTitle={"My Profile"}
-                dropdownPosition={{
-                  align: "center",
-                  side: "bottom",
-                }}
+              theme={"dark"}
+              btnTitle={"Mi Pefil"}
+              
+              dropdownPosition={{
+                align: "center",
+                side: "bottom",
+              }}
 
-                
-              />
-
+            />
+            <Flex>
+              <Stack
+                flex={{ base: 2, md: 1 }}
+                justify={'space-between'}
+                direction={'row'}
+                spacing={6}>
             {address && (
-            <Link className={styles.link} href={`/profile/${address}`}>
-              <Image
-                className={styles.profileImage}
-                src="/user-icon.png"
-                width={42}
-                height={42}
-                alt="Profile"
-              />
-            </Link>
-          )}
-
-        </Stack>
+              <Link href={`/profile/${address}`}>
+                <Button variant="link" color="white" _hover={{ color: "white" }}>
+                  <Image
+                    className={styles.profileImage}
+                    src="/user-icon.png"
+                    width={42}
+                    height={42}
+                    alt="Perfil"
+                  />
+                </Button>
+              </Link>
+            )}
+            </Stack>
+            </Flex>
+          </Stack>
         </Flex>
 
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>        
-
+        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
           </Flex>
         </Flex>
         <div className={styles.navLeft}>
-   
-           <Link href="/" className={`${styles.homeLink} ${styles.navLeft}`}>
+          <Link href="/" className={`${styles.homeLink} ${styles.navLeft}`}>
             <Image
-              src="./../logo.png"
-              width={70}
-              height={70}
+              src="/logo.png" 
+              width={80}
+              height={80}
               alt="Logo"
             />
           </Link>
@@ -124,8 +120,9 @@ export function NavBar() {
         <MobileNav />
       </Collapse>
     </Box>
-  )
+  );
 }
+
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue('white', 'white')
@@ -211,11 +208,15 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 }
 
 const MobileNav = () => {
+
+
   return (
     <Stack bg={useColorModeValue('white', 'gray.800')} p={4} display={{ md: 'none' }}>
+
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
+
     </Stack>
   )
 }
@@ -283,6 +284,6 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Help',
-    href: '#',
+    href: './help',
   },
 ]
