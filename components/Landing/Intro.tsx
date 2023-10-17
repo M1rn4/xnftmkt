@@ -10,8 +10,10 @@ export function Intro() {
       w={'full'}
       h={'100vh'}
       backgroundImage={
-        'url(https://images.unsplash.com/photo-1695852450305-dca6e74f0916?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)'
+        'url(https://images.unsplash.com/photo-1697560644649-cdec8c2fcecf?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=1932)'
       }
+      // backgroundImage={`url(${'./img1.jpg'})`} //
+
       backgroundSize={'cover'}
       backgroundPosition={'center center'}>
       <VStack

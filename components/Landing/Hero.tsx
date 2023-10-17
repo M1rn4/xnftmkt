@@ -18,13 +18,13 @@ import {
 
 export function Hero() {
   return (
-    <Container maxW={'7xl'}>
+    <Container>
       <Stack
         align={'center'}
-        spacing={{ base: 8, md: 10 }}
+        spacing={{ base: 10,  md: 10 }}
         py={{ base: 20, md: 28 }}
         direction={{ base: 'column', md: 'row' }}>
-        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+        <Stack flex={1} spacing={{ base: 1, md: 10 }}>
           <Heading
             lineHeight={1.1}
             fontWeight={600}
@@ -34,7 +34,7 @@ export function Hero() {
               position={'relative'}
               _after={{
                 content: "''",
-                width: 'full',
+                width: '100%',
                 height: '30%',
                 position: 'absolute',
                 bottom: 1,
@@ -54,6 +54,8 @@ export function Hero() {
           </Text>
           <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
             <Button
+              marginTop={'20px'}
+              p={6}
               rounded={'full'}
               size={'lg'}
               fontWeight={'normal'}
@@ -74,6 +76,8 @@ export function Hero() {
           </Stack>
         </Stack>
         <Flex
+          marginTop={'20px'}
+
           flex={1}
           justify={'center'}
           align={'center'}
@@ -94,7 +98,7 @@ export function Hero() {
             rounded={'2xl'}
             boxShadow={'2xl'}
             width={'full'}
-            overflow={'hidden'}>
+            overflow={'visible'}>
             {/* <IconButton
               aria-label={'Play Button'}
               variant={'ghost'}
@@ -116,8 +120,8 @@ export function Hero() {
               src={
                 'https://images.unsplash.com/photo-1695849543507-d7105cf002f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80'
               }
-			//   src = 'h.png'
-			//   fallbackSrc='https://via.placeholder.com/150' 
+			  // src = 'H.png'
+			  // fallbackSrc='https://via.placeholder.com/150' 
             />
           </Box>
         </Flex>

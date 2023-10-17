@@ -42,8 +42,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* Render the navigation menu above each component */}
         <NavBar />
         {/* Render the actual component (page) */}
-        </ChakraProvider>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
+      </ChakraProvider>
+
       
     </ThirdwebProvider>
   );

@@ -35,10 +35,9 @@ export function NavBar() {
   const address = useAddress();
 
   return (
-    <Box position="fixed" top="0" left="0" right="0" zIndex="999">
+    <Box position="fixed" top="0" left="0" right="0" zIndex="1000">
       <Flex
         bg={useColorModeValue('black', 'black')}
-        color={useColorModeValue('white', 'white')}
         minH={'15px'}
         py={{ base: 2 }}
         px={{ base: 4 }}
@@ -104,16 +103,19 @@ export function NavBar() {
             <DesktopNav />
           </Flex>
         </Flex>
-        <div className={styles.navLeft}>
-          <Link href="/" className={`${styles.homeLink} ${styles.navLeft}`}>
-            <Image
-              src="/logo.png" 
-              width={80}
-              height={80}
-              alt="Logo"
-            />
-          </Link>
-        </div>
+        <Flex>
+          <div className={styles.navLeft}>
+            <Link href="/" className={`${styles.homeLink} ${styles.navLeft}`}>
+              <Image
+                src="/logo.png" 
+                width={80}
+                height={80}
+                alt="Logo"
+              />
+            </Link>
+          </div>
+        </Flex>
+
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
