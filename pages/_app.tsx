@@ -14,7 +14,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     // activeChain="polygon"
     // clientId="72aea0471584da07a1e4e92e924644d2"
     clientId={process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID}
-    activeChain={NETWORK}
+    // activeChain={NETWORK}
+    activeChain={{
+      ...NETWORK,
+      rpc: ["https://polygon-mumbai.g.alchemy.com/v2/Rtch_IOjokFISvrDGt9H7BcOqPyeARW3"], // Override the "rpc" field.
+      // ... Override any other fields you want to customize.
+    }}
     supportedWallets={[
       metamaskWallet(),
       magicLink({
