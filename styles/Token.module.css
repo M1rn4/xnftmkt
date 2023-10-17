@@ -41,7 +41,7 @@
   background: transparent;
   border: none;
   font-size: 16px;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px rgba(9, 0, 0, 0.2);
   border-radius: 8px;
   margin-bottom: 16px;
   margin-left: 2px;
@@ -67,7 +67,7 @@
 
 .crossButton:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.8) !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
 }
 
 .collectionImage {
@@ -136,7 +136,7 @@
 }
 
 .label {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6);
   margin: 0px;
   margin-bottom: 4px;
 }
@@ -144,7 +144,7 @@
 .nftOwnerAddress {
   font-weight: 600;
   margin: 0px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .descriptionContainer {
@@ -193,7 +193,7 @@
 .traitValue {
   font-weight: 600;
   margin: 0px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .traitName {
@@ -241,7 +241,7 @@
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
   margin: 0px;
   border-radius: 8px;
 }

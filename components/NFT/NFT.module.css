@@ -2,7 +2,7 @@
   /* Override default NFT renderer width */
   width: 100% !important;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.04);
   object-fit: cover;
 }
 
@@ -17,7 +17,7 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 100%;
-  color: #fff;
+  color: #000000;
   font-family: inherit;
   vertical-align: inherit;
   font-size: 15px;
@@ -60,7 +60,7 @@
   font-size: 13px;
   line-height: 20px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .nftPriceValue {
@@ -76,5 +76,5 @@
   margin: 0px;
   padding: 0px;
   border: 0px;
-  color: #fff;
+  color: #000000;
 }
