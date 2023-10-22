@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { ThirdwebProvider ,metamaskWallet, magicLink,} from "@thirdweb-dev/react";
+import { ThirdwebProvider ,metamaskWallet, magicLink,embeddedWallet,} from "@thirdweb-dev/react";
 import { NavBar } from "../components/Navbar/Navbar";
 import NextNProgress from "nextjs-progressbar";
 import { NETWORK } from "../const/contractAddresses";
@@ -17,10 +17,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     // activeChain={NETWORK}
     activeChain={{
       ...NETWORK,
-      rpc: ["https://polygon-mumbai.g.alchemy.com/v2/Rtch_IOjokFISvrDGt9H7BcOqPyeARW3"], // Override the "rpc" field.
+      // rpc: ["https://polygon-mumbai.g.alchemy.com/v2/Rtch_IOjokFISvrDGt9H7BcOqPyeARW3"], // Override the "rpc" field.
       // ... Override any other fields you want to customize.
+      rpc: ["https://mumbai.rpc.thirdweb.com/KKPXCvlsxXdwyaaQsrx2x6iUDGaTEJI5rjv8lpR0un-mvcWu4qDM5SVh_Y89VqtNvjfk-i-uz1LYiUCTBnxCng"]
+      
     }}
     supportedWallets={[
+      embeddedWallet(),
       metamaskWallet(),
       magicLink({
         apiKey: "pk_live_F37D19C8DD81417E",
