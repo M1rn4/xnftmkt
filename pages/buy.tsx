@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import CollectionGrid from "../components/Collections/collectionGrid";
 
-export default function shopping() {
+export default function Shopping() {
   // Load all of the NFTs from the NFT Collection
   const { contract } = useContract(NFT_COLLECTION_ADDRESS);
   const { contract: nftCollection } = useContract(NFT_COLLECTION_ADDRESS);
