@@ -40,6 +40,17 @@ export function Intro() {
                     COMPRA TU PRIMER NFT
               </Link>
             </Button>
+{/* 
+            <Button
+              p={10}
+              bg={'black'}
+              rounded={'full'}
+              color={'white'}
+              _hover={{ bg: 'black' }}>
+              <Link href="/sell">
+                    Vende tu nft
+              </Link>
+            </Button> */}
           </Stack>
         </Stack>
       </VStack>

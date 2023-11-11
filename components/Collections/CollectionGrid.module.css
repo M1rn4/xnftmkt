@@ -1,0 +1,23 @@
+.collectionGridContainer {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	width: 100%;
+  }
+  
+  .collectionItem {
+	display: flex;
+	max-width: 100%;
+	border: 2px solid #ddd; /* Añade un borde para mayor claridad */
+	margin: 10px;
+  }
+  
+  .collectionImage {
+	max-width: 20%;
+	object-fit: cover;
+  }
+  
+  .collectionDetails {
+	padding: 10px;
+  }
+  
