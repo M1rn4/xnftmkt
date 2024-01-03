@@ -1,8 +1,6 @@
 import {
   useContract,
   useOwnedNFTs,
-  useValidDirectListings,
-  useValidEnglishAuctions,
   useNFTs } from "@thirdweb-dev/react";
 import Container from "../components/Container/Container";
 import NFTGrid from "../components/NFT/NFTGrid";
@@ -20,7 +18,7 @@ export default function Shopping() {
   const { data, isLoading } = useNFTs(contract);
   const router = useRouter();
 
-  const { data: ownedNfts, isLoading: loadingOwnedNfts } = useOwnedNFTs(
+  const { isLoading: loadingOwnedNfts } = useOwnedNFTs(
     nftCollection,
     router.query.address as string
   );

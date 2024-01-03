@@ -3,13 +3,22 @@
 	justify-content: left;
 	align-items: center;
 	width: 100%;
-  }
+	flex-wrap: wrap;  }
   
   .collectionItem {
 	display: flex;
 	max-width: 100%;
-	border: 2px solid #ddd; /* Añade un borde para mayor claridad */
+	border: 3px solid #ddd; /* Añade un borde para mayor claridad */
 	margin: 10px;
+	border-radius: 5px; /* Añade bordes redondeados */
+	/* Añade sombra al pasar el mouse sobre el elemento */
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	/* Añade un poco de margen inferior para que no se vea tan pegado a los demás elementos */
+	margin-bottom: 20px;
+	/* Añade un cursor apuntador al pasar el mouse sobre el elemento */
+	cursor: pointer;
+	/* Añade un efecto de transición al pasar el mouse sobre el elemento */
+
   }
   
   .collectionImage {
@@ -18,6 +27,33 @@
   }
   
   .collectionDetails {
-	padding: 10px;
+	padding: 20px;
+	margin-bottom: 10px;
   }
+
+  .collectionName {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+  }
+
+  /* CollectionGrid.module.css */
+
+.collectionButton {
+	margin-top: 20px;
+	background-color: #3498db; /* Color de fondo del botón */
+	color: #fff; /* Color del texto del botón */
+	padding: 10px 20px; /* Espaciado interno del botón */
+	border: none; /* Sin borde */
+	border-radius: 5px; /* Radio de borde para esquinas redondeadas */
+	cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+	font-size: 16px; /* Tamaño de fuente del botón */
+	transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+  
+	/* Estilos adicionales al pasar el mouse sobre el botón */
+	.collectionButton:hover {
+		background-color: #2980b9; /* Cambia el color de fondo al pasar el mouse */
+	  }
+  }
+  
   
