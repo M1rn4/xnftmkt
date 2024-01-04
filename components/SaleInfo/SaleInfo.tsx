@@ -1,67 +1,67 @@
-import { NFT as NFTType } from "@thirdweb-dev/sdk";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { NFT as NFTType } from '@thirdweb-dev/sdk'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
-import styles from "../../styles/Sale.module.css";
-import profileStyles from "../../styles/Profile.module.css";
+import styles from '../../styles/Sale.module.css'
+import profileStyles from '../../styles/Profile.module.css'
 import {
   useContract,
   useCreateAuctionListing,
   useCreateDirectListing,
   Web3Button,
-} from "@thirdweb-dev/react";
+} from '@thirdweb-dev/react'
 import {
   MARKETPLACE_ADDRESS,
   NFT_COLLECTION_ADDRESS,
-} from "../../const/contractAddresses";
-import { useRouter } from "next/router";
-import toast, { Toaster } from "react-hot-toast";
-import toastStyle from "../../util/toastConfig";
+} from '../../const/contractAddresses'
+import { useRouter } from 'next/router'
+import toast, { Toaster } from 'react-hot-toast'
+import toastStyle from '../../util/toastConfig'
 
 type Props = {
-  nft: NFTType;
-};
+  nft: NFTType
+}
 
 type AuctionFormData = {
-  nftContractAddress: string;
-  tokenId: string;
-  startDate: Date;
-  endDate: Date;
-  floorPrice: string;
-  buyoutPrice: string;
-};
+  nftContractAddress: string
+  tokenId: string
+  startDate: Date
+  endDate: Date
+  floorPrice: string
+  buyoutPrice: string
+}
 
 type DirectFormData = {
-  nftContractAddress: string;
-  tokenId: string;
-  price: string;
-  startDate: Date;
-  endDate: Date;
-};
+  nftContractAddress: string
+  tokenId: string
+  price: string
+  startDate: Date
+  endDate: Date
+}
 
 export default function SaleInfo({ nft }: Props) {
-  const router = useRouter();
+  const router = useRouter()
   // Connect to marketplace contract
   const { contract: marketplace } = useContract(
     MARKETPLACE_ADDRESS,
-    "marketplace-v3"
-  );
+    'marketplace-v3',
+  )
 
   // useContract is a React hook that returns an object with the contract key.
   // The value of the contract key is an instance of an NFT_COLLECTION on the blockchain.
   // This instance is created from the contract address (NFT_COLLECTION_ADDRESS)
-  const { contract: nftCollection } = useContract(NFT_COLLECTION_ADDRESS);
+  const { contract: nftCollection } = useContract(NFT_COLLECTION_ADDRESS)
 
   // Hook provides an async function to create a new auction listing
   const { mutateAsync: createAuctionListing } =
-    useCreateAuctionListing(marketplace);
+    useCreateAuctionListing(marketplace)
 
   // Hook provides an async function to create a new direct listing
   const { mutateAsync: createDirectListing } =
-    useCreateDirectListing(marketplace);
+    useCreateDirectListing(marketplace)
 
   // Manage form submission state using tabs and conditional rendering
-  const [tab, setTab] = useState<"direct" | "auction">("direct");
+  const [tab, setTab] = useState<'direct' | 'auction'>('direct')
 
   // Manage form values using react-hook-form library: Auction form
   const { register: registerAuction, handleSubmit: handleSubmitAuction } =
@@ -71,36 +71,36 @@ export default function SaleInfo({ nft }: Props) {
         tokenId: nft.metadata.id,
         startDate: new Date(),
         endDate: new Date(),
-        floorPrice: "0",
-        buyoutPrice: "0",
+        floorPrice: '0',
+        buyoutPrice: '0',
       },
-    });
+    })
 
   // User requires to set marketplace approval before listing
   async function checkAndProvideApproval() {
     // Check if approval is required
-    const hasApproval = await nftCollection?.call("isApprovedForAll", [
+    const hasApproval = await nftCollection?.call('isApprovedForAll', [
       nft.owner,
       MARKETPLACE_ADDRESS,
-    ]);
+    ])
 
     // If it is, provide approval
     if (!hasApproval) {
-      const txResult = await nftCollection?.call("setApprovalForAll", [
+      const txResult = await nftCollection?.call('setApprovalForAll', [
         MARKETPLACE_ADDRESS,
         true,
-      ]);
+      ])
 
       if (txResult) {
-        toast.success("Marketplace approval granted", {
-          icon: "👍",
+        toast.success('Marketplace approval granted', {
+          icon: '👍',
           style: toastStyle,
-          position: "bottom-center",
-        });
+          position: 'bottom-center',
+        })
       }
     }
 
-    return true;
+    return true
   }
 
   // Manage form values using react-hook-form library: Direct form
@@ -111,12 +111,12 @@ export default function SaleInfo({ nft }: Props) {
         tokenId: nft.metadata.id,
         startDate: new Date(),
         endDate: new Date(),
-        price: "0",
+        price: '0',
       },
-    });
+    })
 
   async function handleSubmissionAuction(data: AuctionFormData) {
-    await checkAndProvideApproval();
+    await checkAndProvideApproval()
     const txResult = await createAuctionListing({
       assetContractAddress: data.nftContractAddress,
       tokenId: data.tokenId,
@@ -124,22 +124,22 @@ export default function SaleInfo({ nft }: Props) {
       minimumBidAmount: data.floorPrice,
       startTimestamp: new Date(data.startDate),
       endTimestamp: new Date(data.endDate),
-    });
+    })
 
-    return txResult;
+    return txResult
   }
 
   async function handleSubmissionDirect(data: DirectFormData) {
-    await checkAndProvideApproval();
+    await checkAndProvideApproval()
     const txResult = await createDirectListing({
       assetContractAddress: data.nftContractAddress,
       tokenId: data.tokenId,
       pricePerToken: data.price,
       startTimestamp: new Date(data.startDate),
       endTimestamp: new Date(data.endDate),
-    });
+    })
 
-    return txResult;
+    return txResult
   }
 
   return (
@@ -149,15 +149,15 @@ export default function SaleInfo({ nft }: Props) {
         <div className={profileStyles.tabs}>
           <h3
             className={`${profileStyles.tab} 
-        ${tab === "direct" ? profileStyles.activeTab : ""}`}
-            onClick={() => setTab("direct")}
+        ${tab === 'direct' ? profileStyles.activeTab : ''}`}
+            onClick={() => setTab('direct')}
           >
             Direct
           </h3>
           <h3
             className={`${profileStyles.tab} 
-        ${tab === "auction" ? profileStyles.activeTab : ""}`}
-            onClick={() => setTab("auction")}
+        ${tab === 'auction' ? profileStyles.activeTab : ''}`}
+            onClick={() => setTab('auction')}
           >
             Auction
           </h3>
@@ -166,11 +166,11 @@ export default function SaleInfo({ nft }: Props) {
         {/* Direct listing fields */}
         <div
           className={`${
-            tab === "direct"
+            tab === 'direct'
               ? styles.activeTabContent
               : profileStyles.tabContent
           }`}
-          style={{ flexDirection: "column" }}
+          style={{ flexDirection: 'column' }}
         >
           <h4 className={styles.formSectionTitle}>When </h4>
 
@@ -179,7 +179,7 @@ export default function SaleInfo({ nft }: Props) {
           <input
             className={styles.input}
             type="datetime-local"
-            {...registerDirect("startDate")}
+            {...registerDirect('startDate')}
             aria-label="Auction Start Date"
           />
 
@@ -188,7 +188,7 @@ export default function SaleInfo({ nft }: Props) {
           <input
             className={styles.input}
             type="datetime-local"
-            {...registerDirect("endDate")}
+            {...registerDirect('endDate')}
             aria-label="Auction End Date"
           />
           <h4 className={styles.formSectionTitle}>Price </h4>
@@ -199,30 +199,28 @@ export default function SaleInfo({ nft }: Props) {
             className={styles.input}
             type="number"
             step={0.000001}
-            {...registerDirect("price")}
+            {...registerDirect('price')}
           />
 
           <Web3Button
             contractAddress={MARKETPLACE_ADDRESS}
             action={async () => {
-              await handleSubmitDirect(handleSubmissionDirect)();
+              await handleSubmitDirect(handleSubmissionDirect)()
             }}
             onError={(error) => {
               toast(`Listed Failed! Reason: ${error.cause}`, {
-                icon: "❌",
+                icon: '❌',
                 style: toastStyle,
-                position: "bottom-center",
-              });
+                position: 'bottom-center',
+              })
             }}
             onSuccess={(txResult) => {
-              toast("Listed Successfully!", {
-                icon: "🥳",
+              toast('Listed Successfully!', {
+                icon: '🥳',
                 style: toastStyle,
-                position: "bottom-center",
-              });
-              router.push(
-                `/token/${NFT_COLLECTION_ADDRESS}/${nft.metadata.id}`
-              );
+                position: 'bottom-center',
+              })
+              router.push(`/token/${NFT_COLLECTION_ADDRESS}/${nft.metadata.id}`)
             }}
           >
             Create Direct Listing
@@ -232,11 +230,11 @@ export default function SaleInfo({ nft }: Props) {
         {/* Auction listing fields */}
         <div
           className={`${
-            tab === "auction"
+            tab === 'auction'
               ? styles.activeTabContent
               : profileStyles.tabContent
           }`}
-          style={{ flexDirection: "column" }}
+          style={{ flexDirection: 'column' }}
         >
           <h4 className={styles.formSectionTitle}>When </h4>
 
@@ -245,7 +243,7 @@ export default function SaleInfo({ nft }: Props) {
           <input
             className={styles.input}
             type="datetime-local"
-            {...registerAuction("startDate")}
+            {...registerAuction('startDate')}
             aria-label="Auction Start Date"
           />
 
@@ -254,7 +252,7 @@ export default function SaleInfo({ nft }: Props) {
           <input
             className={styles.input}
             type="datetime-local"
-            {...registerAuction("endDate")}
+            {...registerAuction('endDate')}
             aria-label="Auction End Date"
           />
           <h4 className={styles.formSectionTitle}>Price </h4>
@@ -265,7 +263,7 @@ export default function SaleInfo({ nft }: Props) {
             className={styles.input}
             step={0.000001}
             type="number"
-            {...registerAuction("floorPrice")}
+            {...registerAuction('floorPrice')}
           />
 
           {/* Input field for buyout price */}
@@ -274,30 +272,28 @@ export default function SaleInfo({ nft }: Props) {
             className={styles.input}
             type="number"
             step={0.000001}
-            {...registerAuction("buyoutPrice")}
+            {...registerAuction('buyoutPrice')}
           />
 
           <Web3Button
             contractAddress={MARKETPLACE_ADDRESS}
             action={async () => {
-              return await handleSubmitAuction(handleSubmissionAuction)();
+              return await handleSubmitAuction(handleSubmissionAuction)()
             }}
             onError={(error) => {
               toast(`Listed Failed! Reason: ${error.cause}`, {
-                icon: "❌",
+                icon: '❌',
                 style: toastStyle,
-                position: "bottom-center",
-              });
+                position: 'bottom-center',
+              })
             }}
             onSuccess={(txResult) => {
-              toast("Listed Successfully!", {
-                icon: "🥳",
+              toast('Listed Successfully!', {
+                icon: '🥳',
                 style: toastStyle,
-                position: "bottom-center",
-              });
-              router.push(
-                `/token/${NFT_COLLECTION_ADDRESS}/${nft.metadata.id}`
-              );
+                position: 'bottom-center',
+              })
+              router.push(`/token/${NFT_COLLECTION_ADDRESS}/${nft.metadata.id}`)
             }}
           >
             Create Auction Listing
@@ -305,5 +301,5 @@ export default function SaleInfo({ nft }: Props) {
         </div>
       </div>
     </>
-  );
+  )
 }

@@ -1,57 +1,53 @@
-import React, { useEffect, useState } from "react";
-import {
-  useContract,
-  useOwnedNFTs,
-  useNFTs
-} from "@thirdweb-dev/react";
-import Skeleton from "../Skeleton/Skeleton";
-import styles from "./CollectionGrid.module.css";
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-import NFTGrid from "../NFT/NFTGrid";
+import React, { useEffect, useState } from 'react'
+import { useContract, useOwnedNFTs, useNFTs } from '@thirdweb-dev/react'
+import Skeleton from '../Skeleton/Skeleton'
+import styles from './CollectionGrid.module.css'
+import { ThirdwebSDK } from '@thirdweb-dev/sdk'
+import NFTGrid from '../NFT/NFTGrid'
 
 type CollectionGridProps = {
-  isLoading: boolean;
-  contractAddresses: string[];
-  emptyText?: string;
-};
+  isLoading: boolean
+  contractAddresses: string[]
+  emptyText?: string
+}
 
 const CollectionGrid: React.FC<CollectionGridProps> = ({
   isLoading,
   contractAddresses,
-  emptyText
+  emptyText,
 }) => {
-  const [contractMetadata, setContractMetadata] = useState<string[]>([]);
-  const [selectedContract, setSelectedContract] = useState<string | null>(null);
+  const [contractMetadata, setContractMetadata] = useState<string[]>([])
+  const [selectedContract, setSelectedContract] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
-      const sdk = new ThirdwebSDK("mumbai", {
+      const sdk = new ThirdwebSDK('mumbai', {
         secretKey: process.env.TW_SECRET_KEY,
-      });
+      })
 
       const metadataArray = await Promise.all(
         contractAddresses.map(async (address) => {
-          const contract = await sdk.getContract(address);
-          const metadata = await contract.metadata.get();
-          return JSON.stringify(metadata);
-        })
-      );
+          const contract = await sdk.getContract(address)
+          const metadata = await contract.metadata.get()
+          return JSON.stringify(metadata)
+        }),
+      )
 
-      setContractMetadata(metadataArray);
-    };
+      setContractMetadata(metadataArray)
+    }
 
-    fetchData();
-  }, [contractAddresses]);
+    fetchData()
+  }, [contractAddresses])
 
   const handleViewCollection = (contractAddress: string) => {
-    setSelectedContract(contractAddress);
-  };
+    setSelectedContract(contractAddress)
+  }
 
   // Use useOwnedNFTs to get NFT data for the selected contract
   const { data: ownedNfts, isLoading: loadingNFTs } = useOwnedNFTs(
     useContract(selectedContract)?.contract, // Use optional chaining to avoid potential null or undefined
-    "0x0"
-  );
+    '0x0',
+  )
 
   return (
     <div>
@@ -85,7 +81,6 @@ const CollectionGrid: React.FC<CollectionGridProps> = ({
                         isLoading={loadingNFTs}
                         emptyText="Por el momento no hay NFTs que mostrar"
                         data={ownedNfts ? ownedNfts : []}
-                        
                       />
                     )}
                   </div>
@@ -95,10 +90,10 @@ const CollectionGrid: React.FC<CollectionGridProps> = ({
           </div>
         ))
       ) : (
-        <p>{emptyText || "Loading metadata..."}</p>
+        <p>{emptyText || 'Loading metadata...'}</p>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CollectionGrid;
+export default CollectionGrid

@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "./Skeleton.module.css";
+import React from 'react'
+import styles from './Skeleton.module.css'
 
 type Props = {
-  width?: string;
-  height?: string;
-};
+  width?: string
+  height?: string
+}
 
 export default function Skeleton({ height, width }: Props) {
   return (
@@ -12,9 +12,9 @@ export default function Skeleton({ height, width }: Props) {
       style={{
         width,
         height,
-        borderRadius: "inherit",
+        borderRadius: 'inherit',
       }}
       className={styles.skeleton}
     />
-  );
+  )
 }

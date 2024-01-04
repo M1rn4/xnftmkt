@@ -21,14 +21,16 @@ export function Hero() {
     <Container>
       <Stack
         align={'center'}
-        spacing={{ base: 10,  md: 10 }}
+        spacing={{ base: 10, md: 10 }}
         py={{ base: 20, md: 28 }}
-        direction={{ base: 'column', md: 'row' }}>
+        direction={{ base: 'column', md: 'row' }}
+      >
         <Stack flex={1} spacing={{ base: 1, md: 10 }}>
           <Heading
             lineHeight={1.1}
             fontWeight={600}
-            fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}>
+            fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+          >
             <Text
               as={'span'}
               position={'relative'}
@@ -41,8 +43,9 @@ export function Hero() {
                 left: 0,
                 bg: 'red.400',
                 zIndex: -1,
-              }}>
-               XmartLiving,
+              }}
+            >
+              XmartLiving,
             </Text>
             <br />
             <Text as={'span'} color={'red.400'}>
@@ -50,9 +53,22 @@ export function Hero() {
             </Text>
           </Heading>
           <Text color={'gray.500'}>
-		  Invertir en un inmueble tokenizado con XMART es más que una inversión, es una oportunidad para un futuro más saludable y próspero. Nuestra visión de Wellness Real Estate impulsa cada proyecto que emprendemos, y eso se traduce en casas inteligentes diseñadas para mejorar tu bienestar. Al unirte a XMART, te conviertes en parte de una comunidad de inversores que valoran la innovación y la inclusión financiera. Además, puedes disfrutar de ingresos pasivos mientras contribuyes al crecimiento de proyectos exclusivos en ubicaciones de ensueño en toda América Latina. Descubre por qué la tokenización de inmuebles con XMART es la elección inteligente para un futuro más saludable y próspero.
+            Invertir en un inmueble tokenizado con XMART es más que una
+            inversión, es una oportunidad para un futuro más saludable y
+            próspero. Nuestra visión de Wellness Real Estate impulsa cada
+            proyecto que emprendemos, y eso se traduce en casas inteligentes
+            diseñadas para mejorar tu bienestar. Al unirte a XMART, te
+            conviertes en parte de una comunidad de inversores que valoran la
+            innovación y la inclusión financiera. Además, puedes disfrutar de
+            ingresos pasivos mientras contribuyes al crecimiento de proyectos
+            exclusivos en ubicaciones de ensueño en toda América Latina.
+            Descubre por qué la tokenización de inmuebles con XMART es la
+            elección inteligente para un futuro más saludable y próspero.
           </Text>
-          <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
+          <Stack
+            spacing={{ base: 4, sm: 6 }}
+            direction={{ base: 'column', sm: 'row' }}
+          >
             <Button
               marginTop={'20px'}
               p={6}
@@ -62,7 +78,8 @@ export function Hero() {
               px={6}
               colorScheme={'red'}
               bg={'red.400'}
-              _hover={{ bg: 'red.500' }}>
+              _hover={{ bg: 'red.500' }}
+            >
               Conoce más
             </Button>
             {/* <Button
@@ -77,12 +94,12 @@ export function Hero() {
         </Stack>
         <Flex
           marginTop={'20px'}
-
           flex={1}
           justify={'center'}
           align={'center'}
           position={'relative'}
-          w={'full'}>
+          w={'full'}
+        >
           <Blob
             w={'150%'}
             h={'150%'}
@@ -98,7 +115,8 @@ export function Hero() {
             rounded={'2xl'}
             boxShadow={'2xl'}
             width={'full'}
-            overflow={'visible'}>
+            overflow={'visible'}
+          >
             {/* <IconButton
               aria-label={'Play Button'}
               variant={'ghost'}
@@ -120,8 +138,8 @@ export function Hero() {
               src={
                 'https://images.unsplash.com/photo-1695849543507-d7105cf002f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80'
               }
-			  // src = 'H.png'
-			  // fallbackSrc='https://via.placeholder.com/150' 
+              // src = 'H.png'
+              // fallbackSrc='https://via.placeholder.com/150'
             />
           </Box>
         </Flex>
@@ -143,7 +161,8 @@ const Blob = (props: IconProps) => {
       viewBox="0 0 578 440"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}>
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"

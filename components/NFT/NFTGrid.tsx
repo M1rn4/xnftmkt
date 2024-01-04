@@ -1,32 +1,31 @@
-import type { NFT as NFTType } from "@thirdweb-dev/sdk";
-import Link from "next/link";
-import React from "react";
-import { NFT_COLLECTION_ADDRESS } from "../../const/contractAddresses";
-import Skeleton from "../Skeleton/Skeleton";
-import NFT from "./NFT";
-import styles from "../../styles/Buy.module.css";
+import type { NFT as NFTType } from '@thirdweb-dev/sdk'
+import Link from 'next/link'
+import React from 'react'
+import { NFT_COLLECTION_ADDRESS } from '../../const/contractAddresses'
+import Skeleton from '../Skeleton/Skeleton'
+import NFT from './NFT'
+import styles from '../../styles/Buy.module.css'
 
 type Props = {
-  isLoading: boolean;
-  data: NFTType[] | undefined;
-  contractAddresses?: string[]; // Add this line
-  overrideOnclickBehavior?: (nft: NFTType) => void;
-  emptyText?: string;
-};
-
+  isLoading: boolean
+  data: NFTType[] | undefined
+  contractAddresses?: string[] // Add this line
+  overrideOnclickBehavior?: (nft: NFTType) => void
+  emptyText?: string
+}
 
 export default function NFTGrid({
   isLoading,
   data,
   overrideOnclickBehavior,
-  emptyText = "No NFTs found for this collection.",
+  emptyText = 'No NFTs found for this collection.',
 }: Props) {
   return (
     <div className={styles.nftGridContainer}>
       {isLoading ? (
         [...Array(20)].map((_, index) => (
           <div key={index} className={styles.nftContainer}>
-            <Skeleton key={index} width={"100%"} height="312px" />
+            <Skeleton key={index} width={'100%'} height="312px" />
           </div>
         ))
       ) : data && data.length > 0 ? (
@@ -47,11 +46,11 @@ export default function NFTGrid({
             >
               <NFT nft={nft} />
             </div>
-          )
+          ),
         )
       ) : (
         <p>{emptyText}</p>
       )}
     </div>
-  );
+  )
 }

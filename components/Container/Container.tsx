@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "./Container.module.css";
+import React from 'react'
+import styles from './Container.module.css'
 
 type Props = {
-  maxWidth: "xs" | "sm" | "md" | "lg" | "xl";
-  children: React.ReactNode;
-};
+  maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  children: React.ReactNode
+}
 
 /**
  * A container component that sets the max-width of its children, and centers them on the page.
@@ -13,5 +13,5 @@ type Props = {
 export default function Container({ maxWidth, children }: Props) {
   return (
     <div className={`${styles.container} ${styles[maxWidth]}`}>{children}</div>
-  );
+  )
 }

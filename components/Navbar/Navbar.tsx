@@ -1,11 +1,11 @@
-import React from 'react';
-import { useRouter } from 'next/router';
+import React from 'react'
+import { useRouter } from 'next/router'
 import {
   Box,
   Flex,
   Text,
   IconButton,
-  Button,  // Agregado el componente Button
+  Button, // Agregado el componente Button
   Stack,
   Collapse,
   Icon,
@@ -14,25 +14,21 @@ import {
   PopoverContent,
   useColorModeValue,
   useDisclosure,
-} from '@chakra-ui/react';
+} from '@chakra-ui/react'
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-} from '@chakra-ui/icons';
-import {
-  ConnectWallet,
-  useAddress,
-} from "@thirdweb-dev/react";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./Navbar.module.css";
-
+} from '@chakra-ui/icons'
+import { ConnectWallet, useAddress } from '@thirdweb-dev/react'
+import Image from 'next/image'
+import Link from 'next/link'
+import styles from './Navbar.module.css'
 
 export function NavBar() {
-  const { isOpen, onToggle } = useDisclosure();
-  const address = useAddress();
+  const { isOpen, onToggle } = useDisclosure()
+  const address = useAddress()
 
   return (
     <Box position="fixed" top="0" left="0" right="0" zIndex="1000">
@@ -52,48 +48,53 @@ export function NavBar() {
         >
           <IconButton
             onClick={onToggle}
-            icon={isOpen ? <CloseIcon w={8} h={8} /> : <HamburgerIcon w={8} h={8} />}
+            icon={
+              isOpen ? <CloseIcon w={8} h={8} /> : <HamburgerIcon w={8} h={8} />
+            }
             variant={'link'}
             aria-label={'Toggle Navigation'}
           />
         </Flex>
         <Flex>
           <Stack
-            flex={{ base:2, md: 1 }}
+            flex={{ base: 2, md: 1 }}
             justify={'space-between'}
             direction={'row'}
             spacing={6}
           >
             <ConnectWallet
-              theme={"dark"}
-              btnTitle={"Mi Pefil"}
-              
+              theme={'dark'}
+              btnTitle={'Mi Pefil'}
               dropdownPosition={{
-                align: "center",
-                side: "bottom",
+                align: 'center',
+                side: 'bottom',
               }}
-
             />
             <Flex>
               <Stack
                 flex={{ base: 2, md: 1 }}
                 justify={'space-between'}
                 direction={'row'}
-                spacing={6}>
-            {address && (
-              <Link href={`/profile/${address}`}>
-                <Button variant="link" color="white" _hover={{ color: "white" }}>
-                  <Image
-                    className={styles.profileImage}
-                    src="/user-icon.png"
-                    width={42}
-                    height={42}
-                    alt="Perfil"
-                  />
-                </Button>
-              </Link>
-            )}
-            </Stack>
+                spacing={6}
+              >
+                {address && (
+                  <Link href={`/profile/${address}`}>
+                    <Button
+                      variant="link"
+                      color="white"
+                      _hover={{ color: 'white' }}
+                    >
+                      <Image
+                        className={styles.profileImage}
+                        src="/user-icon.png"
+                        width={42}
+                        height={42}
+                        alt="Perfil"
+                      />
+                    </Button>
+                  </Link>
+                )}
+              </Stack>
             </Flex>
           </Stack>
         </Flex>
@@ -106,25 +107,18 @@ export function NavBar() {
         <Flex>
           <div className={styles.navLeft}>
             <Link href="/" className={`${styles.homeLink} ${styles.navLeft}`}>
-              <Image
-                src="/logo.png" 
-                width={80}
-                height={80}
-                alt="Logo"
-              />
+              <Image src="/logo.png" width={80} height={80} alt="Logo" />
             </Link>
           </div>
         </Flex>
-
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
     </Box>
-  );
+  )
 }
-
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue('white', 'white')
@@ -147,7 +141,8 @@ const DesktopNav = () => {
                 _hover={{
                   textDecoration: 'none',
                   color: linkHoverColor,
-                }}>
+                }}
+              >
                 {navItem.label}
               </Box>
             </PopoverTrigger>
@@ -159,7 +154,8 @@ const DesktopNav = () => {
                 bg={popoverContentBgColor}
                 p={4}
                 rounded={'xl'}
-                minW={'sm'}>
+                minW={'sm'}
+              >
                 <Stack>
                   {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
@@ -183,13 +179,15 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
       display={'block'}
       p={2}
       rounded={'md'}
-      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}
+    >
       <Stack direction={'row'} align={'center'}>
         <Box>
           <Text
             transition={'all .3s ease'}
             _groupHover={{ color: 'pink.400' }}
-            fontWeight={500}>
+            fontWeight={500}
+          >
             {label}
           </Text>
           <Text fontSize={'sm'}>{subLabel}</Text>
@@ -201,7 +199,8 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           _groupHover={{ opacity: '0%', transform: 'translateX(0)' }}
           justify={'flex-end'}
           align={'center'}
-          flex={1}>
+          flex={1}
+        >
           <Icon color={'transparent'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
@@ -210,15 +209,15 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 }
 
 const MobileNav = () => {
-
-
   return (
-    <Stack bg={useColorModeValue('white', 'gray.800')} p={4} display={{ md: 'none' }}>
-
+    <Stack
+      bg={useColorModeValue('white', 'gray.800')}
+      p={4}
+      display={{ md: 'none' }}
+    >
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
-
     </Stack>
   )
 }
@@ -236,8 +235,12 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         alignItems="center"
         _hover={{
           textDecoration: 'none',
-        }}>
-        <Text fontWeight={600} color={useColorModeValue('gray.600', 'gray.200')}>
+        }}
+      >
+        <Text
+          fontWeight={600}
+          color={useColorModeValue('gray.600', 'gray.200')}
+        >
           {label}
         </Text>
         {children && (
@@ -258,7 +261,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           borderLeft={1}
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.700')}
-          align={'start'}>
+          align={'start'}
+        >
           {children &&
             children.map((child) => (
               <Box as="a" key={child.label} py={2} href={child.href}>
@@ -279,7 +283,6 @@ interface NavItem {
 }
 
 const NAV_ITEMS: Array<NavItem> = [
-
   {
     label: 'Join Discord',
     href: '#',
