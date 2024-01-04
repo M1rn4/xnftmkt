@@ -9,7 +9,7 @@ import styles from '../../styles/Buy.module.css'
 type Props = {
   isLoading: boolean
   data: NFTType[] | undefined
-  contractAddresses?: string[] // Add this line
+  
   overrideOnclickBehavior?: (nft: NFTType) => void
   emptyText?: string
 }

@@ -3,14 +3,17 @@
   justify-content: left;
   align-items: center;
   width: 100%;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .collectionItem {
   display: flex;
   max-width: 100%;
   border: 3px solid #ddd; /* Añade un borde para mayor claridad */
-  margin: 10px;
+  margin: 20px;
+  align-content: space-between;
+  align-items: stretch;
+  justify-content: flex-start;
   border-radius: 5px; /* Añade bordes redondeados */
   /* Añade sombra al pasar el mouse sobre el elemento */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -27,9 +30,28 @@
 }
 
 .collectionDetails {
-  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  flex-direction: column;
   margin-bottom: 10px;
 }
+.allDetails {
+  display: flex;
+  justify-content: space-between;
+  
+  width: 100%;
+  margin: 20px;
+  width: 100%; 
+  flex-direction: column;
+}
+
+.showNFTs {
+
+  border: 3px solid #ddd; /* Añade un borde para mayor claridad */
+  
+ }
 
 .collectionName {
   font-size: 20px;
@@ -54,4 +76,7 @@
   .collectionButton:hover {
     background-color: #2980b9; /* Cambia el color de fondo al pasar el mouse */
   }
+
+
 }
+

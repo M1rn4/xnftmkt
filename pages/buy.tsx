@@ -18,6 +18,7 @@ export default function Shopping() {
   const { contract: nftCollection } = useContract(NFT_COLLECTION_ADDRESS)
 
   const { data, isLoading } = useNFTs(contract)
+  console.log(data)
   const router = useRouter()
 
   const { isLoading: loadingOwnedNfts } = useOwnedNFTs(
@@ -45,7 +46,7 @@ export default function Shopping() {
         ${tab === 'nfts' ? styles.activeTab : ''}`}
           onClick={() => setTab('nfts')}
         >
-          NFTs
+          NFT's
         </h3>
         <h3
           className={`${styles.tab}
@@ -67,7 +68,7 @@ export default function Shopping() {
             NFT_COLLECTION_ADDRESS_2,
             NFT_COLLECTION_ADDRESS_3,
           ]}
-          emptyText="Por el momento no hay Collections que mostrar"
+          emptyText="Cargando collections..."
         />
       </div>
 
